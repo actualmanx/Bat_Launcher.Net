@@ -164,15 +164,16 @@
             aboutToolStripMenuItem.BackColor = SystemColors.ControlDark;
             aboutToolStripMenuItem.Image = (Image)resources.GetObject("aboutToolStripMenuItem.Image");
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(164, 34);
+            aboutToolStripMenuItem.Size = new Size(270, 34);
             aboutToolStripMenuItem.Text = "About";
+            aboutToolStripMenuItem.Click += AboutToolStripMenuItem_Click;
             // 
             // helpToolStripMenuItem1
             // 
             helpToolStripMenuItem1.BackColor = SystemColors.ControlDark;
             helpToolStripMenuItem1.Image = (Image)resources.GetObject("helpToolStripMenuItem1.Image");
             helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            helpToolStripMenuItem1.Size = new Size(164, 34);
+            helpToolStripMenuItem1.Size = new Size(270, 34);
             helpToolStripMenuItem1.Text = "Help";
             // 
             // ClearScreen

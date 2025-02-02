@@ -1,14 +1,9 @@
 ﻿namespace Bat_Launcher.Net
 {
-    public class BatchRunner
+    public class BatchRunner(RichTextBox outputBox)
     {
-        private readonly RichTextBox _outputBox;
-        private Process _process;
-
-        public BatchRunner(RichTextBox outputBox)
-        {
-            _outputBox = outputBox;
-        }
+        private readonly RichTextBox _outputBox = outputBox;
+        private Process? _process;
 
         public async Task RunBatchFileAsync(string batchFilePath, bool showCommands)
         {

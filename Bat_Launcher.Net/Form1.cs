@@ -157,5 +157,10 @@ namespace Bat_Launcher.Net
             }
             Application.Exit();
         }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
