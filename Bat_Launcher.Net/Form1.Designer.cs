@@ -34,7 +34,7 @@
             Cancel = new Button();
             checkBoxShowCommands = new CheckBox();
             statusStrip1 = new StatusStrip();
-            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            fileStripStatusLabel1 = new ToolStripStatusLabel();
             menuStrip1 = new MenuStrip();
             menuToolStripMenuItem = new ToolStripMenuItem();
             fileOpenToolStripMenuItem = new ToolStripMenuItem();
@@ -53,15 +53,15 @@
             richTextBox1.Location = new Point(12, 50);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
-            richTextBox1.Size = new Size(776, 270);
-            richTextBox1.TabIndex = 0;
+            richTextBox1.Size = new Size(963, 270);
+            richTextBox1.TabIndex = 5;
             richTextBox1.Text = "";
             // 
             // ButtonRunBatch
             // 
-            ButtonRunBatch.Location = new Point(683, 353);
+            ButtonRunBatch.Location = new Point(889, 391);
             ButtonRunBatch.Name = "ButtonRunBatch";
-            ButtonRunBatch.Size = new Size(86, 38);
+            ButtonRunBatch.Size = new Size(86, 34);
             ButtonRunBatch.TabIndex = 1;
             ButtonRunBatch.Text = "Start";
             ButtonRunBatch.UseVisualStyleBackColor = true;
@@ -69,9 +69,9 @@
             // 
             // Cancel
             // 
-            Cancel.Location = new Point(591, 353);
+            Cancel.Location = new Point(777, 391);
             Cancel.Name = "Cancel";
-            Cancel.Size = new Size(86, 38);
+            Cancel.Size = new Size(86, 34);
             Cancel.TabIndex = 2;
             Cancel.Text = "Cancel";
             Cancel.UseVisualStyleBackColor = true;
@@ -82,7 +82,7 @@
             checkBoxShowCommands.AutoSize = true;
             checkBoxShowCommands.Checked = true;
             checkBoxShowCommands.CheckState = CheckState.Checked;
-            checkBoxShowCommands.Location = new Point(253, 353);
+            checkBoxShowCommands.Location = new Point(339, 395);
             checkBoxShowCommands.Name = "checkBoxShowCommands";
             checkBoxShowCommands.Size = new Size(269, 29);
             checkBoxShowCommands.TabIndex = 4;
@@ -92,18 +92,17 @@
             // statusStrip1
             // 
             statusStrip1.ImageScalingSize = new Size(24, 24);
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 418);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { fileStripStatusLabel1 });
+            statusStrip1.Location = new Point(0, 460);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(800, 32);
+            statusStrip1.Size = new Size(987, 22);
             statusStrip1.TabIndex = 5;
             statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // fileStripStatusLabel1
             // 
-            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(170, 25);
-            toolStripStatusLabel1.Text = "fileStripStatusLabel1";
+            fileStripStatusLabel1.Name = "fileStripStatusLabel1";
+            fileStripStatusLabel1.Size = new Size(0, 15);
             // 
             // menuStrip1
             // 
@@ -111,7 +110,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { menuToolStripMenuItem, helpToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 33);
+            menuStrip1.Size = new Size(987, 33);
             menuStrip1.TabIndex = 6;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -125,14 +124,14 @@
             // fileOpenToolStripMenuItem
             // 
             fileOpenToolStripMenuItem.Name = "fileOpenToolStripMenuItem";
-            fileOpenToolStripMenuItem.Size = new Size(270, 34);
+            fileOpenToolStripMenuItem.Size = new Size(189, 34);
             fileOpenToolStripMenuItem.Text = "File Open";
             fileOpenToolStripMenuItem.Click += FileOpenToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(270, 34);
+            exitToolStripMenuItem.Size = new Size(189, 34);
             exitToolStripMenuItem.Text = "Exit";
             // 
             // helpToolStripMenuItem
@@ -156,9 +155,9 @@
             // 
             // ClearScreen
             // 
-            ClearScreen.Location = new Point(35, 348);
+            ClearScreen.Location = new Point(12, 391);
             ClearScreen.Name = "ClearScreen";
-            ClearScreen.Size = new Size(112, 34);
+            ClearScreen.Size = new Size(86, 34);
             ClearScreen.TabIndex = 7;
             ClearScreen.Text = "Clear Screen";
             ClearScreen.UseVisualStyleBackColor = true;
@@ -171,9 +170,10 @@
             // 
             // Form1
             // 
+            AllowDrop = true;
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(987, 482);
             Controls.Add(ClearScreen);
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
@@ -200,7 +200,7 @@
         private Button Cancel;
         private CheckBox checkBoxShowCommands;
         private StatusStrip statusStrip1;
-        private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripStatusLabel fileStripStatusLabel1;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem menuToolStripMenuItem;
         private ToolStripMenuItem helpToolStripMenuItem;

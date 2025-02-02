@@ -4,13 +4,29 @@ namespace Bat_Launcher.Net
 {
     public partial class Form1 : Form
     {
-        private BatchRunner _batchRunner;
+        private readonly BatchRunner _batchRunner;
         private bool _isRunning = false;
+        private string? filePath; // Remove readonly to allow updates
+
         public Form1()
         {
             InitializeComponent();
             _batchRunner = new BatchRunner(richTextBox1);
             Cancel.Enabled = false;
+
+            filePath = RegistryHelper.Read("Settings", "FilePath") as string;
+
+            fileStripStatusLabel1.Text = filePath;
+
+            if (String.IsNullOrEmpty(fileStripStatusLabel1.Text))
+            {
+                this.richTextBox1.Text = "Please drag & drop a file or use the menu to add a file." + Environment.NewLine;
+            }
+
+            // Enable drag-and-drop for the form
+            this.AllowDrop = true;
+            this.DragEnter += new DragEventHandler(Form1_DragEnter);
+            this.DragDrop += new DragEventHandler(Form1_DragDrop);
         }
 
         private async void ButtonRunBatch_Click(object sender, EventArgs e)
@@ -18,11 +34,16 @@ namespace Bat_Launcher.Net
             if (_isRunning)
                 return; // Prevent multiple runs
 
+            if (string.IsNullOrEmpty(filePath))
+            {
+                AppendOutput("No batch file path specified.");
+                return;
+            }
+
             _isRunning = true;
             ButtonRunBatch.Enabled = false;
             Cancel.Enabled = true;
-
-            string batchFilePath = @"C:\Users\Kieran Hill\Desktop\nnplus\misc\update_scripts\win_scripts\runme.bat";
+            string? batchFilePath = filePath; // Use the already assigned filePath
             bool showCommands = checkBoxShowCommands.Checked;
 
             try
@@ -30,7 +51,10 @@ namespace Bat_Launcher.Net
                 richTextBox1.Clear();
                 AppendOutput("Starting batch file execution...");
 
-                await _batchRunner.RunBatchFileAsync(batchFilePath, showCommands);
+                if (batchFilePath != null) // Ensure batchFilePath is not null
+                {
+                    await _batchRunner.RunBatchFileAsync(batchFilePath, showCommands);
+                }
 
                 AppendOutput("Batch file execution completed.");
             }
@@ -54,6 +78,7 @@ namespace Bat_Launcher.Net
             richTextBox1.AppendText(text + Environment.NewLine);
             richTextBox1.ScrollToCaret();
         }
+
         private void Cancel_Click(object sender, EventArgs e)
         {
             if (_isRunning)
@@ -73,7 +98,55 @@ namespace Bat_Launcher.Net
 
         private void FileOpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            using OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = @"C:\",
+                Filter = "Batch files (*.bat)|*.bat|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = false
+            };
 
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Get the path of specified file
+                filePath = openFileDialog.FileName; // Update filePath
+
+                // Save the file path to the registry
+                RegistryHelper.Write("Settings", "FilePath", filePath);
+
+                // Optionally, you can display the file path in a control or use it as needed
+                fileStripStatusLabel1.Text = filePath;
+            }
+        }
+
+        private void Form1_DragEnter(object? sender, DragEventArgs e)
+        {
+            if (e.Data != null && e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void Form1_DragDrop(object? sender, DragEventArgs e)
+        {
+            if (e.Data != null && e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[]? files = e.Data.GetData(DataFormats.FileDrop) as string[];
+                if (files != null && files.Length > 0)
+                {
+                    filePath = files[0]; // Update filePath
+
+                    // Save the file path to the registry
+                    RegistryHelper.Write("Settings", "FilePath", filePath);
+
+                    // Optionally, you can display the file path in a control or use it as needed
+                    fileStripStatusLabel1.Text = filePath;
+                }
+            }
         }
     }
 }

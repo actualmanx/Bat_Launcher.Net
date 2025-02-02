@@ -3,9 +3,11 @@ namespace Bat_Launcher.Net
 
     public class RegistryHelper
     {
-        public static void Write(string key, string subKey, string valueName, object value)
+        private static readonly string BaseRegistryKey = @"Software\Acid\" + (Application.ProductName?.ToString() ?? "DefaultProductName");
+
+        public static void Write(string subKey, string valueName, object value)
         {
-            using RegistryKey registryKey = Registry.CurrentUser.CreateSubKey(key);
+            using RegistryKey registryKey = Registry.CurrentUser.CreateSubKey(BaseRegistryKey);
             if (registryKey != null)
             {
                 using RegistryKey subKeyRef = registryKey.CreateSubKey(subKey);
@@ -13,9 +15,9 @@ namespace Bat_Launcher.Net
             }
         }
 
-        public static object? Read(string key, string subKey, string valueName)
+        public static object? Read(string subKey, string valueName)
         {
-            using RegistryKey? registryKey = Registry.CurrentUser.OpenSubKey(key);
+            using RegistryKey? registryKey = Registry.CurrentUser.OpenSubKey(BaseRegistryKey);
             if (registryKey != null)
             {
                 using RegistryKey? subKeyRef = registryKey.OpenSubKey(subKey);
@@ -24,9 +26,9 @@ namespace Bat_Launcher.Net
             return null;
         }
 
-        public static void Delete(string key, string subKey, string valueName)
+        public static void Delete(string subKey, string valueName)
         {
-            using RegistryKey? registryKey = Registry.CurrentUser.OpenSubKey(key, true);
+            using RegistryKey? registryKey = Registry.CurrentUser.OpenSubKey(BaseRegistryKey, true);
             if (registryKey != null)
             {
                 using RegistryKey? subKeyRef = registryKey.OpenSubKey(subKey, true);
