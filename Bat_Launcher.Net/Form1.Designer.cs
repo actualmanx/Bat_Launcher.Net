@@ -50,6 +50,7 @@
             // 
             // richTextBox1
             // 
+            richTextBox1.BackColor = SystemColors.ControlDark;
             richTextBox1.Location = new Point(12, 50);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
@@ -91,6 +92,7 @@
             // 
             // statusStrip1
             // 
+            statusStrip1.BackColor = SystemColors.ControlDark;
             statusStrip1.ImageScalingSize = new Size(24, 24);
             statusStrip1.Items.AddRange(new ToolStripItem[] { fileStripStatusLabel1 });
             statusStrip1.Location = new Point(0, 460);
@@ -106,6 +108,7 @@
             // 
             // menuStrip1
             // 
+            menuStrip1.BackColor = SystemColors.ControlDark;
             menuStrip1.ImageScalingSize = new Size(24, 24);
             menuStrip1.Items.AddRange(new ToolStripItem[] { menuToolStripMenuItem, helpToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
@@ -117,39 +120,45 @@
             // menuToolStripMenuItem
             // 
             menuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { fileOpenToolStripMenuItem, exitToolStripMenuItem });
+            menuToolStripMenuItem.Image = (Image)resources.GetObject("menuToolStripMenuItem.Image");
             menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            menuToolStripMenuItem.Size = new Size(73, 29);
+            menuToolStripMenuItem.Size = new Size(97, 29);
             menuToolStripMenuItem.Text = "Menu";
             // 
             // fileOpenToolStripMenuItem
             // 
+            fileOpenToolStripMenuItem.Image = (Image)resources.GetObject("fileOpenToolStripMenuItem.Image");
             fileOpenToolStripMenuItem.Name = "fileOpenToolStripMenuItem";
-            fileOpenToolStripMenuItem.Size = new Size(270, 34);
+            fileOpenToolStripMenuItem.Size = new Size(189, 34);
             fileOpenToolStripMenuItem.Text = "File Open";
             fileOpenToolStripMenuItem.Click += FileOpenToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
+            exitToolStripMenuItem.Image = (Image)resources.GetObject("exitToolStripMenuItem.Image");
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(270, 34);
+            exitToolStripMenuItem.Size = new Size(189, 34);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += ExitToolStripMenuItem_Click;
             // 
             // helpToolStripMenuItem
             // 
             helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem, helpToolStripMenuItem1 });
+            helpToolStripMenuItem.Image = (Image)resources.GetObject("helpToolStripMenuItem.Image");
             helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            helpToolStripMenuItem.Size = new Size(65, 29);
+            helpToolStripMenuItem.Size = new Size(89, 29);
             helpToolStripMenuItem.Text = "Help";
             // 
             // aboutToolStripMenuItem
             // 
+            aboutToolStripMenuItem.Image = (Image)resources.GetObject("aboutToolStripMenuItem.Image");
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             aboutToolStripMenuItem.Size = new Size(164, 34);
             aboutToolStripMenuItem.Text = "About";
             // 
             // helpToolStripMenuItem1
             // 
+            helpToolStripMenuItem1.Image = (Image)resources.GetObject("helpToolStripMenuItem1.Image");
             helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
             helpToolStripMenuItem1.Size = new Size(164, 34);
             helpToolStripMenuItem1.Text = "Help";
@@ -174,6 +183,7 @@
             AllowDrop = true;
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlDarkDark;
             ClientSize = new Size(987, 482);
             Controls.Add(ClearScreen);
             Controls.Add(statusStrip1);
