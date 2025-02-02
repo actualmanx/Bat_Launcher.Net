@@ -37,12 +37,13 @@
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             menuStrip1 = new MenuStrip();
             menuToolStripMenuItem = new ToolStripMenuItem();
-            helpToolStripMenuItem = new ToolStripMenuItem();
             fileOpenToolStripMenuItem = new ToolStripMenuItem();
-            aboutToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
+            helpToolStripMenuItem = new ToolStripMenuItem();
+            aboutToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem1 = new ToolStripMenuItem();
             ClearScreen = new Button();
+            openFileDialog1 = new OpenFileDialog();
             statusStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -121,24 +122,12 @@
             menuToolStripMenuItem.Size = new Size(73, 29);
             menuToolStripMenuItem.Text = "Menu";
             // 
-            // helpToolStripMenuItem
-            // 
-            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem, helpToolStripMenuItem1 });
-            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            helpToolStripMenuItem.Size = new Size(65, 29);
-            helpToolStripMenuItem.Text = "Help";
-            // 
             // fileOpenToolStripMenuItem
             // 
             fileOpenToolStripMenuItem.Name = "fileOpenToolStripMenuItem";
             fileOpenToolStripMenuItem.Size = new Size(270, 34);
             fileOpenToolStripMenuItem.Text = "File Open";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(270, 34);
-            aboutToolStripMenuItem.Text = "About";
+            fileOpenToolStripMenuItem.Click += FileOpenToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
@@ -146,10 +135,23 @@
             exitToolStripMenuItem.Size = new Size(270, 34);
             exitToolStripMenuItem.Text = "Exit";
             // 
+            // helpToolStripMenuItem
+            // 
+            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem, helpToolStripMenuItem1 });
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new Size(65, 29);
+            helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            aboutToolStripMenuItem.Size = new Size(164, 34);
+            aboutToolStripMenuItem.Text = "About";
+            // 
             // helpToolStripMenuItem1
             // 
             helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            helpToolStripMenuItem1.Size = new Size(270, 34);
+            helpToolStripMenuItem1.Size = new Size(164, 34);
             helpToolStripMenuItem1.Text = "Help";
             // 
             // ClearScreen
@@ -161,6 +163,11 @@
             ClearScreen.Text = "Clear Screen";
             ClearScreen.UseVisualStyleBackColor = true;
             ClearScreen.Click += ClearScreen_Click;
+            // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
+            openFileDialog1.Filter = "Batch Files|*.bat|All Files|*.*";
             // 
             // Form1
             // 
@@ -202,5 +209,6 @@
         private ToolStripMenuItem aboutToolStripMenuItem;
         private ToolStripMenuItem helpToolStripMenuItem1;
         private Button ClearScreen;
+        private OpenFileDialog openFileDialog1;
     }
 }

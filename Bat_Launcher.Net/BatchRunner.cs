@@ -1,8 +1,14 @@
 ﻿namespace Bat_Launcher.Net
 {
-    public class BatchRunner(RichTextBox outputBox)
+    public class BatchRunner
     {
-        private readonly RichTextBox _outputBox = outputBox;
+        private readonly RichTextBox _outputBox;
+        private Process _process;
+
+        public BatchRunner(RichTextBox outputBox)
+        {
+            _outputBox = outputBox;
+        }
 
         public async Task RunBatchFileAsync(string batchFilePath, bool showCommands)
         {
@@ -30,28 +36,41 @@
                     startInfo.EnvironmentVariables.Remove("PROMPT");
             }
 
-            using var process = new Process { StartInfo = startInfo };
-            process.OutputDataReceived += (sender, e) => { if (e.Data != null) AppendOutput(e.Data); };
-            process.ErrorDataReceived += (sender, e) => { if (e.Data != null) AppendOutput(e.Data); };
+            // Initialize the process and assign it to the _process field
+            _process = new Process { StartInfo = startInfo };
+            _process.OutputDataReceived += (sender, e) => { if (e.Data != null) AppendOutput(e.Data); };
+            _process.ErrorDataReceived += (sender, e) => { if (e.Data != null) AppendOutput(e.Data); };
 
-            process.Start();
+            _process.Start();
 
-            process.BeginOutputReadLine();
-            process.BeginErrorReadLine();
+            _process.BeginOutputReadLine();
+            _process.BeginErrorReadLine();
 
-            await Task.Run(() => process.WaitForExit());
+            // Await the process exit without blocking the UI thread
+            await Task.Run(() => _process.WaitForExit());
+        }
+
+        public void Cancel()
+        {
+            if (_process != null && !_process.HasExited)
+            {
+                try
+                {
+                    _process.Kill();
+                    AppendOutput("Process canceled by user.");
+                }
+                catch (Exception ex)
+                {
+                    AppendOutput($"Error canceling process: {ex.Message}");
+                }
+            }
         }
 
         private static string BuildArguments(string batchFilePath, bool showCommands)
         {
-            if (showCommands)
-            {
-                return $"/C \"\"{batchFilePath}\"\"";
-            }
-            else
-            {
-                return $"/Q /C \"\"{batchFilePath}\"\"";
-            }
+            return showCommands
+                ? $"/C \"\"{batchFilePath}\"\""
+                : $"/Q /C \"\"{batchFilePath}\"\"";
         }
 
         private void AppendOutput(string text)
@@ -70,5 +89,4 @@
             }
         }
     }
-
 }
