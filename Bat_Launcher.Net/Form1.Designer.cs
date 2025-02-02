@@ -51,6 +51,7 @@
             // richTextBox1
             // 
             richTextBox1.BackColor = SystemColors.ControlDark;
+            richTextBox1.BorderStyle = BorderStyle.None;
             richTextBox1.Location = new Point(12, 50);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
@@ -60,22 +61,26 @@
             // 
             // ButtonRunBatch
             // 
+            ButtonRunBatch.BackColor = SystemColors.ControlDarkDark;
+            ButtonRunBatch.ForeColor = Color.Lime;
             ButtonRunBatch.Location = new Point(889, 391);
             ButtonRunBatch.Name = "ButtonRunBatch";
             ButtonRunBatch.Size = new Size(86, 34);
             ButtonRunBatch.TabIndex = 1;
             ButtonRunBatch.Text = "Start";
-            ButtonRunBatch.UseVisualStyleBackColor = true;
+            ButtonRunBatch.UseVisualStyleBackColor = false;
             ButtonRunBatch.Click += ButtonRunBatch_Click;
             // 
             // Cancel
             // 
+            Cancel.BackColor = SystemColors.ControlDarkDark;
+            Cancel.ForeColor = Color.Red;
             Cancel.Location = new Point(777, 391);
             Cancel.Name = "Cancel";
             Cancel.Size = new Size(86, 34);
             Cancel.TabIndex = 2;
             Cancel.Text = "Cancel";
-            Cancel.UseVisualStyleBackColor = true;
+            Cancel.UseVisualStyleBackColor = false;
             Cancel.Click += Cancel_Click;
             // 
             // checkBoxShowCommands
@@ -83,6 +88,7 @@
             checkBoxShowCommands.AutoSize = true;
             checkBoxShowCommands.Checked = true;
             checkBoxShowCommands.CheckState = CheckState.Checked;
+            checkBoxShowCommands.ForeColor = SystemColors.GradientActiveCaption;
             checkBoxShowCommands.Location = new Point(339, 395);
             checkBoxShowCommands.Name = "checkBoxShowCommands";
             checkBoxShowCommands.Size = new Size(269, 29);
@@ -119,6 +125,7 @@
             // 
             // menuToolStripMenuItem
             // 
+            menuToolStripMenuItem.BackColor = SystemColors.AppWorkspace;
             menuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { fileOpenToolStripMenuItem, exitToolStripMenuItem });
             menuToolStripMenuItem.Image = (Image)resources.GetObject("menuToolStripMenuItem.Image");
             menuToolStripMenuItem.Name = "menuToolStripMenuItem";
@@ -127,6 +134,7 @@
             // 
             // fileOpenToolStripMenuItem
             // 
+            fileOpenToolStripMenuItem.BackColor = SystemColors.ControlDark;
             fileOpenToolStripMenuItem.Image = (Image)resources.GetObject("fileOpenToolStripMenuItem.Image");
             fileOpenToolStripMenuItem.Name = "fileOpenToolStripMenuItem";
             fileOpenToolStripMenuItem.Size = new Size(189, 34);
@@ -135,6 +143,7 @@
             // 
             // exitToolStripMenuItem
             // 
+            exitToolStripMenuItem.BackColor = SystemColors.ControlDark;
             exitToolStripMenuItem.Image = (Image)resources.GetObject("exitToolStripMenuItem.Image");
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             exitToolStripMenuItem.Size = new Size(189, 34);
@@ -143,6 +152,7 @@
             // 
             // helpToolStripMenuItem
             // 
+            helpToolStripMenuItem.BackColor = SystemColors.AppWorkspace;
             helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem, helpToolStripMenuItem1 });
             helpToolStripMenuItem.Image = (Image)resources.GetObject("helpToolStripMenuItem.Image");
             helpToolStripMenuItem.Name = "helpToolStripMenuItem";
@@ -151,6 +161,7 @@
             // 
             // aboutToolStripMenuItem
             // 
+            aboutToolStripMenuItem.BackColor = SystemColors.ControlDark;
             aboutToolStripMenuItem.Image = (Image)resources.GetObject("aboutToolStripMenuItem.Image");
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             aboutToolStripMenuItem.Size = new Size(164, 34);
@@ -158,6 +169,7 @@
             // 
             // helpToolStripMenuItem1
             // 
+            helpToolStripMenuItem1.BackColor = SystemColors.ControlDark;
             helpToolStripMenuItem1.Image = (Image)resources.GetObject("helpToolStripMenuItem1.Image");
             helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
             helpToolStripMenuItem1.Size = new Size(164, 34);
@@ -165,12 +177,14 @@
             // 
             // ClearScreen
             // 
+            ClearScreen.BackColor = SystemColors.ControlDarkDark;
+            ClearScreen.ForeColor = Color.Yellow;
             ClearScreen.Location = new Point(12, 391);
             ClearScreen.Name = "ClearScreen";
             ClearScreen.Size = new Size(86, 34);
             ClearScreen.TabIndex = 7;
             ClearScreen.Text = "Clear Screen";
-            ClearScreen.UseVisualStyleBackColor = true;
+            ClearScreen.UseVisualStyleBackColor = false;
             ClearScreen.Click += ClearScreen_Click;
             // 
             // openFileDialog1
@@ -183,7 +197,7 @@
             AllowDrop = true;
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlDarkDark;
+            BackColor = Color.DimGray;
             ClientSize = new Size(987, 482);
             Controls.Add(ClearScreen);
             Controls.Add(statusStrip1);
