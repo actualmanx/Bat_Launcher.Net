@@ -148,5 +148,14 @@ namespace Bat_Launcher.Net
                 }
             }
         }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_isRunning)
+            {
+                _batchRunner.Cancel();
+            }
+            Application.Exit();
+        }
     }
 }
