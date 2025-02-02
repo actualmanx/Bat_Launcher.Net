@@ -1,5 +1,3 @@
-using Microsoft.Win32;
-
 namespace Bat_Launcher.Net
 {
 

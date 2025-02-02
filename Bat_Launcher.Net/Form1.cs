@@ -1,63 +1,57 @@
-using Bat_launcher.Net;
-
 namespace Bat_Launcher.Net
 {
     public partial class Form1 : Form
     {
-        private ProcessCaller processCaller = null!; // Initialize with null-forgiving operator
+        private BatchRunner _batchRunner;
 
         public Form1()
         {
             InitializeComponent();
-            InitializeProcessCaller();
+            _batchRunner = new BatchRunner(richTextBox1);
         }
-
-        private void InitializeProcessCaller()
-        {
-            processCaller = new ProcessCaller
-            {
-                FileName = "F:\\Dual Universe Server\\scripts\\up.bat", // Set your batch file path here
-                Arguments = "", // Set any arguments if needed
-                WorkingDirectory = "" // Set the working directory if needed
-            };
-
-            processCaller.StdOutReceived += ProcessCaller_StdOutReceived;
-            processCaller.StdErrReceived += ProcessCaller_StdErrReceived;
-        }
-
-        private void ProcessCaller_StdOutReceived(object sender, DataReceivedEventArgs e)
-        {
-            AppendTextToRichTextBox(e.Text);
-        }
-
-        private void ProcessCaller_StdErrReceived(object sender, DataReceivedEventArgs e)
-        {
-            AppendTextToRichTextBox(e.Text);
-        }
-
-        private void AppendTextToRichTextBox(string text)
-        {
-            if (richTextBox1.InvokeRequired)
-            {
-                richTextBox1.Invoke(new Action<string>(AppendTextToRichTextBox), text);
-            }
-            else
-            {
-                richTextBox1.AppendText(text + Environment.NewLine);
-                richTextBox1.SelectionStart = richTextBox1.Text.Length;
-                richTextBox1.ScrollToCaret();
-            }
-        }
-
 
         private async void ButtonRunBatch_Click(object sender, EventArgs e)
         {
-            await processCaller.StartAsync();
+            ButtonRunBatch.Enabled = false;
+
+            string batchFilePath = @"C:\Users\Kieran Hill\Desktop\nnplus\misc\update_scripts\win_scripts\runme.bat";
+            bool showCommands = checkBoxShowCommands.Checked;
+
+            try
+            {
+                richTextBox1.Clear();
+                AppendOutput("Starting batch file execution...");
+
+                await _batchRunner.RunBatchFileAsync(batchFilePath, showCommands);
+
+                AppendOutput("Batch file execution completed.");
+            }
+            catch (Exception ex)
+            {
+                AppendOutput($"An error occurred: {ex.Message}");
+            }
+            finally
+            {
+                ButtonRunBatch.Enabled = true;
+            }
         }
 
+        private void AppendOutput(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                return;
+
+            richTextBox1.AppendText(text + Environment.NewLine);
+            richTextBox1.ScrollToCaret();
+        }
         private void Cancel_Click(object sender, EventArgs e)
         {
-            processCaller.Cancel();
+
+        }
+
+        private void ClearScreen_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
         }
     }
 }

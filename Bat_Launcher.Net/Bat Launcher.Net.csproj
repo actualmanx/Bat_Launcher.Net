@@ -8,4 +8,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Using Include="Microsoft.Win32" />
+    <Using Include="System.Diagnostics" />
+    <Using Include="System.Text" />
+  </ItemGroup>
+
 </Project>
